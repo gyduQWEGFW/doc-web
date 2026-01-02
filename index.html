@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileCompressor - Client Side</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1><i class="fa-solid fa-compress"></i> UltraCompress</h1>
+            <p>Secure, Client-Side File Compression</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('image')">Compress Image</button>
+            <button class="tab-btn" onclick="switchTab('pdf')">Compress PDF</button>
+        </div>
+
+        <div id="image-section" class="compression-section active-section">
+            <div class="upload-box" id="image-drop-zone">
+                <i class="fa-regular fa-image upload-icon"></i>
+                <p>Drag & drop images here or <span>Browse</span></p>
+                <input type="file" id="image-input" accept="image/*" hidden>
+            </div>
+
+            <div class="controls">
+                <label>Quality: <span id="quality-value">0.7</span></label>
+                <input type="range" id="quality-slider" min="0.1" max="1" step="0.1" value="0.7">
+                <p class="hint">Lower quality = Smaller file size</p>
+            </div>
+
+            <div class="preview-area" id="image-preview-area" style="display: none;">
+                <div class="file-info">
+                    <p>Original: <span id="img-original-size">0 KB</span></p>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <p>Compressed: <span id="img-compressed-size">0 KB</span></p>
+                </div>
+                <button id="download-img-btn" class="download-btn"><i class="fa-solid fa-download"></i> Download Image</button>
+            </div>
+        </div>
+
+        <div id="pdf-section" class="compression-section">
+            <div class="upload-box" id="pdf-drop-zone">
+                <i class="fa-regular fa-file-pdf upload-icon"></i>
+                <p>Drag & drop PDF here or <span>Browse</span></p>
+                <input type="file" id="pdf-input" accept=".pdf" hidden>
+            </div>
+
+            <div class="controls">
+                <p class="hint">Note: Browser-based PDF compression focuses on structural optimization (removing unused objects). For heavy image downsampling in PDFs, server-side tools are recommended.</p>
+            </div>
+
+            <div class="preview-area" id="pdf-preview-area" style="display: none;">
+                <div class="file-info">
+                    <p>Original: <span id="pdf-original-size">0 KB</span></p>
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <p>Optimized: <span id="pdf-compressed-size">0 KB</span></p>
+                </div>
+                <button id="download-pdf-btn" class="download-btn"><i class="fa-solid fa-download"></i> Download PDF</button>
+            </div>
+        </div>
+        
+        <div id="loading" class="loading-overlay" style="display: none;">
+            <div class="spinner"></div>
+            <p>Compressing...</p>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
